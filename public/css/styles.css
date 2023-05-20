@@ -1,0 +1,31 @@
+.header{
+    color: rgb(204, 86, 8);
+    text-align: center;
+}
+.general{
+    padding-top: 50px;
+    display: block;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.box{
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    margin-right: 10px;
+    border: 2px solid black;
+}
+.jogadorAtual{
+    text-align: center;
+}
+div#currentPlayer{
+    padding-top: 30px;
+}

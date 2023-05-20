@@ -1,0 +1,14 @@
+.header{
+    color: rgb(204, 86, 8);
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    padding-top: 200px;
+}
+
+.button{
+    padding: 50px;
+}

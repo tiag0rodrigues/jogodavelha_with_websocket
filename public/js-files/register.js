@@ -10,7 +10,7 @@ form.addEventListener("submit", function(event){
         input_login: input_login.value,
         input_password: input_password.value
     }
-    fetch('http://127.0.0.1:3000/api/read/users', {
+    fetch('http://127.0.0.1:3000/api/read/login/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

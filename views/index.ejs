@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/styles-index.css">
 </head>
 <body>
-    <form autocomplete class="form" method="post">
+    <form autocomplete class="form" method="post" id="form">
         <div>
             <label for="login">Login</label>
             <input type="text" name="login" id="login" onblur="onChangeLogin()"/>
@@ -20,6 +20,7 @@
             <input type="password" name="password" id="password" onblur="onChangePassword()"/>
             <div class="error" id="password-required-error">Senha é obrigatório</div>
         </div>
+        <div id="invalid" class="error">Email e/ou senha inválidos</div>
         <input type="submit" name="action" value="Login"/>
     </form>
     <button onclick="window.location.href = '/register' ">

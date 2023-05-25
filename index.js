@@ -1,26 +1,36 @@
 const express = require('express');
-const session = require('express-session')
+//const session = require('express-session')
 const app = express();
 const home = require('./routes/home')
 const register = require('./routes/register')
-const read_reg = require('./routes/read_reg')
+const read_reg_login = require('./routes/read_reg_login')
+const read_reg_password = require('./routes/read_reg_password')
 const create_reg = require('./routes/create_reg')
+const login_session = require('./routes/login_session')
 const bodyParser = require('body-parser')
 const db = require('./public/database/_database')
 //const {validateLogin} = require('./public/js-files/d-index')
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use(session({secret:'sdjsladdlasdk563'}))
+//app.use(session({secret:'sdjsladdlasdk563'}))
 app.use(bodyParser.urlencoded({extended:true}))
+
 //rotas
 app.use(home)
 app.use(register)
-app.use(read_reg)
+app.use(read_reg_login)
+app.use(read_reg_password)
 app.use(create_reg)
+app.use(login_session)
 
 db.connect()
 
+app.get('/start', (req, res)=>{
+    res.render('start')
+})
+
+/*
 app.post('/', (req, res) => {
     //conexão com banco
     db.query("SELECT * FROM jogo.registro WHERE usuario= $1", [req.body.login], (err, results)=>{
@@ -35,7 +45,7 @@ app.post('/', (req, res) => {
         }
         console.log('Registros encontrados:', results.rows);
     })
-});
+});*/
 
 /* ou
 app.post('/', (req, res) => {

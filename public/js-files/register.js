@@ -10,7 +10,7 @@ form.addEventListener("submit", function(event){
         input_login: input_login.value,
         input_password: input_password.value
     }
-    fetch('https://54.158.253.130:3000/api/read/login/users', {
+    fetch('http://54.158.253.130:3000/api/read/login/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ form.addEventListener("submit", function(event){
     .then(function(data){
         if(data==0){
             document.getElementById('invalid-login').style.display = 'none'
-            fetch('https://54.158.253.130:3000/api/create/users', {
+            fetch('http://54.158.253.130:3000/api/create/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

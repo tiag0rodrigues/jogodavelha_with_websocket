@@ -46,7 +46,7 @@ form.addEventListener('submit', function(event){
         input_login: input_login.value,
         input_password: input_password.value
     }
-    fetch('https://jogodavelhadotiago.onrender.com/api/read/login/users', {
+    fetch('https://54.158.253.130:3000/api/read/login/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ form.addEventListener('submit', function(event){
             document.getElementById('invalid').style.display='block'
         }else{
             document.getElementById('invalid').style.display='none'
-            fetch('https://jogodavelhadotiago.onrender.com/api/read/password/users', {
+            fetch('https://54.158.253.130:3000/api/read/password/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ form.addEventListener('submit', function(event){
                     document.getElementById('invalid').style.display='block'
                 }else{
                     document.getElementById('invalid').style.display='none'
-                    fetch('https://jogodavelhadotiago.onrender.com/api/login_session', {
+                    fetch('https://54.158.253.130:3000/api/login_session', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

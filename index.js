@@ -7,13 +7,13 @@ const read_reg_login = require('./routes/read_reg_login')
 const read_reg_password = require('./routes/read_reg_password')
 const create_reg = require('./routes/create_reg')
 const login_session = require('./routes/login_session')
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const db = require('./public/database/_database')
 //const {validateLogin} = require('./public/js-files/d-index')
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-//app.use(session({secret:'sdjsladdlasdk563'}))
+app.use(session({secret:'sdjsladdlasdk563'}))
 app.use(bodyParser.urlencoded({extended:true}))
 
 //rotas

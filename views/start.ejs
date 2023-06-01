@@ -13,9 +13,14 @@
     </header>
     <section>
        <div class="container">
-        <button class="button" onclick="window.location.href = '/home' ">
-            Iniciar
-        </button>
+         <form method="post" id="form_room">
+            <select name="select_room" id="select_room">
+                <option value="-1">Selecione uma sala</option>
+                <option value="sala1">Sala 1</option>
+                <option value="sala2">Sala 2</option>
+            </select>
+            <input type="submit" name="enter" id="enter" value="Enter"/>
+        </form>
        </div>
     </section>
     <footer>
@@ -24,3 +29,4 @@
     <script src='/js-files/start.js'></script>
 </body>
 </html>
+       

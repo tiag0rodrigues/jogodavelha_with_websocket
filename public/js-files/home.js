@@ -1,15 +1,55 @@
-//const jogadorAtual = document.querySelector(".joagdorAtual")
-
-const jogadorAtual = window.document.getElementById('vezD')
-
-let vez = 1;
-let jogador = 'X'
+let array = new Array(10)
+let jogadorAtual = document.getElementById('vezD')
+let vez = 1; //1 = 'X' e 0 = 'O'
+let jogador = 'X'//começa com o jogador X
 jogadorAtual.innerHTML = `Jogador da vez: ${jogador}`
-let count = 0;
+let count = 0;//contador 
+
+//parte da conexão e uso do socket
+const room = localStorage.getItem('selectedRoom')
+const userName = localStorage.getItem('userName')
+console.log(room, userName)
+
+const socket = io()
+
+socket.on('connect', ()=>{
+    console.log('connectado')
+})
+
+socket.emit('select_room', {
+    userName,
+    room,
+})
+
+for(let i=0; i<9; i++){
+    let a = i+1
+    document
+        .getElementById(`${a}`)
+        .addEventListener('click', (event)=>{
+            let vez_ant = vez
+            verificaVez(`${a}`)
+
+            const data = {
+                room: room,
+                userName: userName,
+                id_click: `${a}`,
+                vez: vez_ant
+            }
+
+            socket.emit('att', data)
+        })
+}
+
+socket.on('att', (data)=>{
+    vez = data.vez
+    verificaVez(data.id_click)
+    console.log(data)
+})
 
 
+//parte das funções que geram a lógica do jogo
 function verificaVez(id){
-    let a = window.document.getElementById(id)
+    let a = document.getElementById(id)
     if(vez==1){
         a.innerText = 'X'
         vez = 0
@@ -25,10 +65,9 @@ function verificaVez(id){
 
 function verificaGanhador(){
     let i=0
-    const array = new Array(10)
     for(i=0; i<9; i++){
         let a = i+1
-        array[i] = window.document.getElementById(`${a}`)
+        array[i] = document.getElementById(`${a}`)
     }
     // Verificar combinações de vitória
     if(
@@ -41,7 +80,7 @@ function verificaGanhador(){
         (array[0].innerText == 'X' && array[4].innerText == 'X' && array[8].innerText == 'X') ||
         (array[2].innerText == 'X' && array[4].innerText == 'X' && array[6].innerText == 'X')
     ){
-        window.alert('Jogador 1 ganhou!');
+        alert('Jogador 1 ganhou!');
     }else{
         if(
             (array[0].innerText == 'O' && array[1].innerText == 'O' && array[2].innerText == 'O') ||
@@ -53,12 +92,10 @@ function verificaGanhador(){
             (array[0].innerText == 'O' && array[4].innerText == 'O' && array[8].innerText == 'O') ||
             (array[2].innerText == 'O' && array[4].innerText == 'O' && array[6].innerText == 'O')
         ){
-            window.alert('Jogador 2 ganhou!');
+            alert('Jogador 2 ganhou!');
         }else{
-            if(count>=9) window.alert('deu velha')
+            if(count>=9) alert('deu velha')
         }
     }
     //location.reload()
 }
-
-//jogadorAtual.innerHTML = `Jogador da vez: ${vez}`

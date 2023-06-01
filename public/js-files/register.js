@@ -9,7 +9,7 @@ form.addEventListener("submit", function(event){
         input_login: input_login.value,
         input_password: input_password.value
     }
-    fetch('http://127.0.0.1:3000/api/read/login/users', {
+    fetch('https://jogo-da-velha-ws.onrender.com/api/read/login/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ form.addEventListener("submit", function(event){
     .then(function(data){
         if(data==0){
             document.getElementById('invalid-login').style.display = 'none'
-            fetch('http://127.0.0.1:3000/api/create/users', {
+            fetch('https://jogo-da-velha-ws.onrender.com/api/create/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 import { io } from "./http.js";
 
-const users_list = []
+let users_list = []
 
 io.on('connection', (socket)=>{
     const playerId = socket.id
@@ -24,6 +24,8 @@ io.on('connection', (socket)=>{
         }
 
         console.log(users_list)
+        
+        io.to(data.room).emit('players', users_list)
     })
 
     socket.on('att', (data)=>{
@@ -40,5 +42,9 @@ io.on('connection', (socket)=>{
 
     })
 
+    socket.on('logout', (data)=>{
+        users_list = users_list.filter(item => !(item.room===data.room && item.userName===data.userName))
+        console.log(users_list)
+    })
 })
 

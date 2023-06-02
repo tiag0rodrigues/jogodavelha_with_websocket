@@ -1,3 +1,5 @@
+import { socket } from "./wait_room.js";
+
 let array = new Array(10)
 let jogadorAtual = document.getElementById('vezD')
 let vez = 1; //1 = 'X' e 0 = 'O'
@@ -10,15 +12,10 @@ const room = localStorage.getItem('selectedRoom')
 const userName = localStorage.getItem('userName')
 console.log(room, userName)
 
-const socket = io()
+const sockets = socket
 
-socket.on('connect', ()=>{
+sockets.on('connect', ()=>{
     console.log('connectado')
-})
-
-socket.emit('select_room', {
-    userName,
-    room,
 })
 
 for(let i=0; i<9; i++){
@@ -36,11 +33,21 @@ for(let i=0; i<9; i++){
                 vez: vez_ant
             }
 
-            socket.emit('att', data)
+            sockets.emit('att', data)
         })
 }
 
-socket.on('att', (data)=>{
+document
+    .getElementById('logout_button')
+    .addEventListener('click', (event)=>{
+        sockets.emit('logout', {
+            room: room,
+            userName: userName
+        })
+        window.location.href = '/start'
+    })
+
+sockets.on('att', (data)=>{
     vez = data.vez
     verificaVez(data.id_click)
     console.log(data)

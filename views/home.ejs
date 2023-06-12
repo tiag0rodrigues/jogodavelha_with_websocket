@@ -14,21 +14,35 @@
         <h1>Jogo da Velha</h1>
     </header>
     <section>
-        <div class="general">
-            <div class="container">
-                <div id='1' class="box"></div>
-                <div id='2' class="box" ></div>
-                <div id='3' class="box"></div>
+        <div id="container_chat_box">
+            <div>
+                <div id="chat-container">
+                    <p>Bate-papo:</p>
+                    <div id="chat">
+
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Escreva uma mensagem" id="input_chat_text">
+                    </div>
+                </div>
+                <div id="players"></div>
             </div>
-            <div class="container">
-                <div id='4' class="box"></div>
-                <div id='5' class="box"></div>
-                <div id='6' class="box"></div>
-            </div>
-            <div class="container">
-                <div id='7' class="box"></div>
-                <div id='8' class="box"></div>
-                <div id='9' class="box"></div>
+            <div class="general">
+                <div class="container">
+                    <div id='1' class="box"></div>
+                    <div id='2' class="box" ></div>
+                    <div id='3' class="box"></div>
+                </div>
+                <div class="container">
+                    <div id='4' class="box"></div>
+                    <div id='5' class="box"></div>
+                    <div id='6' class="box"></div>
+                </div>
+                <div class="container">
+                    <div id='7' class="box"></div>
+                    <div id='8' class="box"></div>
+                    <div id='9' class="box"></div>
+                </div>
             </div>
         </div>
         <div id="currentPlayer">
@@ -36,6 +50,9 @@
         </div>
         <div>
             <button id="logout_button">Logout</button>
+        </div>
+        <div>
+            <button id="restart_button" class="restart_button">Reiniciar</button>
         </div>
     </section>
     <footer>

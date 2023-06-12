@@ -37,15 +37,93 @@ for(let i=0; i<9; i++){
         })
 }
 
+//logout event
 document
-    .getElementById('logout_button')
-    .addEventListener('click', (event)=>{
-        sockets.emit('logout', {
-            room: room,
-            userName: userName
-        })
-        window.location.href = '/start'
+.getElementById('logout_button')
+.addEventListener('click', (event)=>{
+    sockets.emit('logout', {
+        room: room,
+        userName: userName
     })
+    window.location.href = '/start'
+})
+
+//restart event
+document
+.getElementById('restart_button')
+.addEventListener('click', (event)=>{
+    sockets.emit('restart', {
+        room: room
+    })
+})
+
+sockets.on('restart', (data)=>{
+    f_restart()
+    document.getElementById('restart_button').style.display = 'none'
+})
+
+function f_restart(){
+    for(let i=1; i<=9; i++){
+        document.getElementById(`${i}`).innerText = ''
+    }
+    vez = 1
+    jogador = 'X'
+    count = 0
+    jogadorAtual.innerHTML = `Jogador da vez: ${jogador}`
+}
+
+
+//chat event
+document
+.getElementById('input_chat_text')
+.addEventListener('keypress', (event=>{
+    if(event.key === 'Enter'){
+        const message = event.target.value
+        console.log(message)
+        const data = {
+            room,
+            userName,
+            message
+        }
+
+        sockets.emit('message', data)
+
+        event.target.value = ''
+    }
+}))
+
+sockets.on('message', (data)=>{
+    const messageDiv = document.getElementById('chat')
+
+    messageDiv.innerHTML += `
+        <div>
+            ${data.userName}: ${data.message}
+        </div>
+    `
+    messageDiv.scrollTop = messageDiv.scrollHeight
+})
+
+sockets.emit('room', {
+    room
+})
+
+sockets.on('players_in', (data)=>{
+    console.log(data)
+    let list_players = document.getElementById('players')
+    let newContent = '';
+    let k=0
+    for(let j=0; j<data.length; j++){
+        if(data[j].room == room){
+            newContent += `
+                <div> 
+                    player ${k+1}: ${data[`${k}`].userName}
+                </div>
+            `
+            k++
+        }
+    }
+    list_players.innerHTML = newContent
+})
 
 sockets.on('att', (data)=>{
     vez = data.vez
@@ -77,6 +155,7 @@ function verificaGanhador(){
         array[i] = document.getElementById(`${a}`)
     }
     // Verificar combinações de vitória
+    document.getElementById('restart_button').style.display = 'none'
     if(
         (array[0].innerText == 'X' && array[1].innerText == 'X' && array[2].innerText == 'X') ||
         (array[3].innerText == 'X' && array[4].innerText == 'X' && array[5].innerText == 'X') ||
@@ -88,6 +167,7 @@ function verificaGanhador(){
         (array[2].innerText == 'X' && array[4].innerText == 'X' && array[6].innerText == 'X')
     ){
         alert('Jogador 1 ganhou!');
+        document.getElementById('restart_button').style.display = 'block'
     }else{
         if(
             (array[0].innerText == 'O' && array[1].innerText == 'O' && array[2].innerText == 'O') ||
@@ -100,9 +180,14 @@ function verificaGanhador(){
             (array[2].innerText == 'O' && array[4].innerText == 'O' && array[6].innerText == 'O')
         ){
             alert('Jogador 2 ganhou!');
+            document.getElementById('restart_button').style.display = 'block'
         }else{
-            if(count>=9) alert('deu velha')
+            if(count>=9){ 
+                alert('deu velha')
+                document.getElementById('restart_button').style.display = 'block'
+            }
         }
+        
     }
     //location.reload()
 }

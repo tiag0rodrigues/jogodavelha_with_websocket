@@ -46,5 +46,17 @@ io.on('connection', (socket)=>{
         users_list = users_list.filter(item => !(item.room===data.room && item.userName===data.userName))
         console.log(users_list)
     })
+
+    socket.on('restart', (data)=>{
+        io.to(data.room).emit('restart', data)
+    })
+
+    socket.on('message', (data)=>{
+        io.to(data.room).emit('message', data)
+    })
+
+    socket.on('room', (data)=>{
+        io.to(data.room).emit('players_in', users_list)
+    })
 })
 

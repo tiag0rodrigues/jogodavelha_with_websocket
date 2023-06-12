@@ -19,7 +19,7 @@ socket.on('players', (data)=>{
     for(let j=0; j<data.length; j++){
         if(data[j].room == room){
             newContent += `
-                <div> 
+                <div class="col s1 #69f0ae green accent-2" id="circle"> 
                     player ${k+1}: ${data[`${k}`].userName}
                 </div>
             `

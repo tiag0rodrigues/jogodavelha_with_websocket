@@ -2,6 +2,13 @@
     color: rgb(204, 86, 8);
     text-align: center;
 }
+div#players{
+    height: 50px;
+}
+div#chat{
+    max-height: 50px;
+    overflow: auto;
+}
 .general{
     padding-top: 50px;
     display: block;
@@ -28,4 +35,20 @@
 }
 div#currentPlayer{
     padding-top: 30px;
+}
+.restart_button{
+    display: none;
+}
+div#container_chat_box{
+    display: flex;
+    flex-direction: row;
+}
+
+div#chat{
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+div#chat::-webkit-scrollbar {
+    width: 6px; /* Ajuste a largura conforme necessário */
 }

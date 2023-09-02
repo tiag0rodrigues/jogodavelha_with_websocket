@@ -50,7 +50,7 @@ router.post('/api/login_session', (req, res)=>{//faz login na sessão
 
 router.post('/api/read/login/users', (req, res)=>{//p/ buscar usuario na tabela de registro do banco de dados
     db.query("SELECT * FROM jogo.registro WHERE usuario= $1", [req.body.input_login], (err, results)=>{
-            res.json(results.rows.length)//retorna o tamanho da tabala retornada
+            res.json(results.rows.length)//retorna o tamanho da tabela retornada
     })
 })
 

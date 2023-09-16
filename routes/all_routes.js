@@ -6,7 +6,12 @@ import { client } from '../public/database/__database.js'
 
 const router = Router()
 
-router.use(session({secret:'sdjsladdlasdk563'}))
+router.use(session({
+    secret:'sdjsladdlasdk563',
+    resave: false, // Atualizado para false
+    saveUninitialized: false, // Atualizado para false
+
+}))
 router.use(bodyParser.urlencoded({extended:true}))
 
 //ajuda a usar json

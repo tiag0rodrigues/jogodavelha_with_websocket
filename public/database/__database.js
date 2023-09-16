@@ -5,9 +5,9 @@ const { Client } = pkg;
 //informações do banco
 const client = new Client({
     user: 'tiago',
-    host: 'database-1.cotrbiznnqzh.us-east-1.rds.amazonaws.com',
+    host: 'database-2.cotrbiznnqzh.us-east-1.rds.amazonaws.com',
     database: 'jogodavelha',
-    password: 'tiago1234',
+    password: 'tiago12345',
     port: 5432
 })
 

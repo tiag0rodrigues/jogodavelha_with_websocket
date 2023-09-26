@@ -8,10 +8,8 @@ const client = new Client({
     host: 'database-2.cotrbiznnqzh.us-east-1.rds.amazonaws.com',
     database: 'jogodavelha',
     password: 'tiago12345',
-    port: 5432,
-    ssl: {
-        rejectUnauthorized: true,
-    }
+    port: 5432
+    
 })
 
 export {client}

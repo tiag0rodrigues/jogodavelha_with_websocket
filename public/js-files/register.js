@@ -11,7 +11,7 @@ input_login.addEventListener("input", function(event){
         input_password: input_password.value
     }
     console.log(input_login.value)
-    fetch('https://jogo-da-velha-ws.onrender.com/api/read/login/users', {
+    fetch('https://jogodavelhacomws.onrender.com/api/read/login/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ form.addEventListener('submit', (event)=>{
         input_login: input_login.value,
         input_password: input_password.value
     }
-    fetch('https://jogo-da-velha-ws.onrender.com/api/create/users', {
+    fetch('https://jogodavelhacomws.onrender.com/api/create/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -10,7 +10,7 @@ const client = new Client({
     password: 'tiago12345',
     port: 5432,
     ssl: {
-        rejectUnauthorized: false,
+        rejectUnauthorized: true,
     }
 })
 
